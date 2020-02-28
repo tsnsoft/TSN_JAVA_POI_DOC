@@ -8,12 +8,15 @@ import java.io.FileOutputStream;
 import org.apache.poi.hwpf.HWPFDocument;
 
 public class ReceiptWord extends javax.swing.JFrame {
+    private static final long serialVersionUID = 1L;
 
     class TThread1 extends Thread {
 
         public void run() {
             String dir = new File(".").getAbsoluteFile().getParentFile().getAbsolutePath()
                     + System.getProperty("file.separator");
+            
+            // Чтение из файла-шаблона в переменную doc
             HWPFDocument doc = null;
             try (FileInputStream fis = new FileInputStream(dir + "receipt_template.doc")) {
                 doc = new HWPFDocument(fis);
@@ -22,6 +25,7 @@ public class ReceiptWord extends javax.swing.JFrame {
                 System.err.println("Error template!");
             }
 
+            // Замена в переменной doc данных
             try {
                 doc.getRange().replaceText("$ФИОплательщика", jTextField_FIO.getText());
                 doc.getRange().replaceText("$АДРЕСплательщика", jTextField_Adres.getText());
@@ -29,9 +33,11 @@ public class ReceiptWord extends javax.swing.JFrame {
                 System.err.println("Error replaceText!");
             }
 
+            // Сохранение переменной doc в новый файл
             try (FileOutputStream fos = new FileOutputStream(dir + "receipt.doc")) {
                 doc.write(fos);
                 fos.close();
+                // Открытие файла внешней программой
                 Desktop.getDesktop().open(new File(dir + "receipt.doc"));
             } catch (Exception ex) {
                 System.err.println("Error getDesktop!");
@@ -39,8 +45,6 @@ public class ReceiptWord extends javax.swing.JFrame {
             setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
     }
-
-    Thread tThread1;
 
     public ReceiptWord() {
         initComponents();
@@ -68,7 +72,7 @@ public class ReceiptWord extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton_Save);
-        jButton_Save.setBounds(940, 380, 80, 27);
+        jButton_Save.setBounds(940, 380, 80, 23);
 
         jTextField_FIO.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jTextField_FIO);
