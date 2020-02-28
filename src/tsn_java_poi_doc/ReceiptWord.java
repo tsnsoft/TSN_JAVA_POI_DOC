@@ -1,4 +1,4 @@
-package tsn_java_poi.msword;
+package tsn_java_poi_doc;
 
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -82,7 +82,7 @@ public class ReceiptWord extends javax.swing.JFrame {
         getContentPane().add(jTextField_Adres);
         jTextField_Adres.setBounds(630, 286, 260, 24);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tsn_java_poi/msword/receipt.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tsn_java_poi_doc/receipt.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1040, 410);
 

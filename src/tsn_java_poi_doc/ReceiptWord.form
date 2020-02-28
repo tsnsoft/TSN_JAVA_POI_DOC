@@ -69,7 +69,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/tsn_java_poi/msword/receipt.png"/>
+          <Image iconType="3" name="/tsn_java_poi_doc/receipt.png"/>
         </Property>
       </Properties>
       <Constraints>
