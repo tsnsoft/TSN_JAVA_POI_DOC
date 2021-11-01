@@ -38,7 +38,12 @@ public class ReceiptWord extends javax.swing.JFrame {
                 doc.write(fos);
                 fos.close();
                 // Открытие файла внешней программой
-                Desktop.getDesktop().open(new File(dir + "receipt.doc"));
+                if (System.getProperty("os.name").equals("Linux")
+                        && System.getProperty("java.vendor").startsWith("Red Hat")) {
+                    new ProcessBuilder("xdg-open", dir + "receipt.doc").start();
+                } else {
+                    Desktop.getDesktop().open(new File(dir + "receipt.doc"));
+                }
             } catch (Exception ex) {
                 System.err.println("Error getDesktop!");
             }
